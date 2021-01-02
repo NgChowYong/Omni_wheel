@@ -7,6 +7,11 @@
 
 #include <SPI.h>
 
+/*
+*****************
+**Initial setup**
+*****************
+*/
 USB Usb;
 //USBHub Hub1(&Usb); // Some dongles have a hub inside
 
@@ -29,6 +34,12 @@ int* dir_2_p;
 int* dir_3_p;
 
 void setup() {
+
+  /*
+  ***********************
+  **Initialize pin mode**
+  ***********************
+  */
   pinMode(motorIn1, OUTPUT);
   pinMode(motorIn2, OUTPUT);
   pinMode(motorIn3, OUTPUT);
@@ -67,7 +78,15 @@ void setup() {
   Serial.print(F("\r\nPS3 Bluetooth Library Started"));
 #endif
 }
+
+
 void loop() {
+
+  /*
+  ************************************
+  **looping to take controller input**
+  ************************************
+  */
   Usb.Task();
   // get data from controller
   if (PS3.PS3Connected || PS3.PS3NavigationConnected) {
@@ -75,6 +94,8 @@ void loop() {
     a = PS3.getAnalogHat(LeftHatX) ;
     b = PS3.getAnalogHat(LeftHatY) ;
     c = PS3.getAnalogHat(RightHatX);
+
+    // threshold for controller to undesired avoid motion
     if (a > 137 || a < 117 || b > 137 || b < 117 || c > 137 || c < 117) {
       a = a - 127;
       b = b - 127;
@@ -97,6 +118,7 @@ void loop() {
       anglestop();
     }
     else {
+      // stop the motor
       motorGo( MOTOR_1, 2, 255) ;
       motorGo( MOTOR_2, 2, 255) ;
       motorGo( MOTOR_3, 2, 255) ;

@@ -1,4 +1,5 @@
-#define DEBUG //enable Serial print ,comment it(add // in front) to disable serial print
+//enable Serial print ,comment it(add // in front) to disable serial print
+#define DEBUG 
 
 //MOTOR 1 (CW & CCW)-------------30degrees
 #define MOTOR_A1_PIN 32
@@ -12,11 +13,13 @@
 #define MOTOR_A3_PIN 36
 #define MOTOR_B3_PIN 38
 
-#define PWM_MOTOR_1 5  //for PWM 
+//PWM pin number
+#define PWM_MOTOR_1 5  
 #define PWM_MOTOR_2 3
 #define PWM_MOTOR_3 4
 
-#define EN_PIN_1 A0  //for Enable
+// for Enable pin of motor
+#define EN_PIN_1 A0  
 
 #define MOTOR_1 0
 #define MOTOR_2 1
